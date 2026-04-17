@@ -1,1 +1,187 @@
+inicioalgoritmo
 
+classe SistemaLoja
+
+    procedimento inicializar:
+        criar janela principal
+        definir título "Vendas e Estoque"
+        definir tamanho da janela
+        
+        conectar_banco()
+        criar_menu_principal()
+    fimprocedimento
+
+    procedimento conectar_banco:
+        tentar:
+            conectar ao banco de dados "loja"
+            criar cursor
+        se erro:
+            mostrar mensagem "Impossível conectar!"
+        fimtentar
+    fimprocedimento
+
+    procedimento criar_menu_principal:
+        mostrar título "Estoque e Vendas"
+
+        criar lista de botões:
+            cadastrar produto
+            listar produtos
+            editar produto
+            excluir produto
+            cadastrar cliente
+            listar clientes
+            nova venda
+            histórico de vendas
+            estoque
+            buscar produto
+            relatório de vendas
+
+        para cada botão na lista:
+            criar botão com ação correspondente
+        fimprocedimento
+    fimprocedimento
+
+    procedimento cadastrar_produto:
+        abrir nova janela
+        ler nome, preço, categoria, estoque
+        
+        procedimento salvar:
+            tentar:
+                inserir produto no banco
+                confirmar alteração
+                mostrar "Produto cadastrado"
+                fechar janela
+            se erro:
+                mostrar "Dados inválidos"
+        fimprocedimento
+    fimprocedimento
+
+    procedimento listar_produtos:
+        abrir janela
+        buscar todos os produtos no banco
+        exibir em tabela
+    fimprocedimento
+
+    procedimento editar_produto:
+        abrir janela
+        ler ID
+        
+        procedimento buscar:
+            procurar produto pelo ID
+            se encontrado:
+                preencher campos
+            senao:
+                mostrar "Produto não encontrado"
+        fimprocedimento
+        
+        procedimento salvar_edicao:
+            tentar:
+                atualizar nome e preço no banco
+                confirmar alteração
+                mostrar "Produto atualizado"
+                fechar janela
+            se erro:
+                mostrar "Erro ao atualizar"
+        fimprocedimento
+    fimprocedimento
+
+    procedimento excluir_produto:
+        abrir janela
+        ler ID
+        
+        procedimento excluir:
+            perguntar confirmação
+            deletar produto do banco
+            confirmar alteração
+            mostrar "Produto excluído"
+            fechar janela
+        fimprocedimento
+    fimprocedimento
+
+    procedimento cadastrar_cliente:
+        abrir janela
+        ler nome e email
+        
+        procedimento salvar:
+            inserir cliente no banco
+            confirmar alteração
+            mostrar "Cliente cadastrado"
+            fechar janela
+        fimprocedimento
+    fimprocedimento
+
+    procedimento listar_clientes:
+        abrir janela
+        buscar todos os clientes
+        exibir em tabela
+    fimprocedimento
+
+    procedimento nova_venda:
+        abrir janela
+        ler ID cliente, ID produto, quantidade
+        
+        procedimento finalizar_venda:
+            tentar:
+                buscar preço e estoque do produto
+                se estoque suficiente:
+                    calcular total
+                    inserir venda no banco
+                    atualizar estoque
+                    confirmar alteração
+                    mostrar "Venda realizada"
+                    fechar janela
+                senao:
+                    mostrar "Estoque insuficiente"
+            se erro:
+                mostrar "Dados inválidos"
+        fimprocedimento
+    fimprocedimento
+
+    procedimento historico_vendas:
+        abrir janela
+        buscar vendas ordenadas por data
+        exibir em tabela
+    fimprocedimento
+
+    procedimento controle_estoque:
+        abrir janela
+        buscar produtos ordenados por estoque
+        exibir em tabela
+    fimprocedimento
+
+    procedimento buscar_produto:
+        abrir janela
+        ler nome
+        
+        procedimento buscar:
+            limpar tabela
+            buscar produtos com nome semelhante
+            exibir resultados
+        fimprocedimento
+    fimprocedimento
+
+    procedimento relatorio_vendas:
+        abrir janela
+        calcular soma total de vendas
+        calcular quantidade de vendas
+        
+        se quantidade > 0:
+            calcular ticket médio
+        senao:
+            ticket médio = 0
+        
+        exibir relatório
+    fimprocedimento
+
+    procedimento executar:
+        iniciar loop da interface
+    fimprocedimento
+
+fimclasse
+
+inicio
+
+    criar objeto SistemaLoja
+    executar sistema
+
+fimalgoritmo
