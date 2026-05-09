@@ -24,10 +24,10 @@ class SistemaLojaGames:
             messagebox.showerror("Erro", "Verifique o XAMPP!")
 
     def criar_menu_principal(self):
-        tk.Label(self.root, text="Estoque e Vendas", font=('Arial', 50, 'bold')).pack(pady=10)
+        tk.Label(self.root, text="Estoque e Vendas", font=('Arial', 40, 'bold')).pack(pady=10)
 
         frame_botoes = tk.Frame(self.root)
-        frame_botoes.pack(pady=200)
+        frame_botoes.pack(pady=100)
         
         botoes = [
             ("📥 Cadastrar Produto", self.janela1_cadastrar_jogo),
